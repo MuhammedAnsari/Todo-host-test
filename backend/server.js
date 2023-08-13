@@ -8,13 +8,7 @@ const app = express();
 app.use(express.json());
 
 // Enable CORS
-app.use(cors(
-  {
-    origin: {"https://deploy-mern-lunhg.vercel.app"},
-    methods: ["POST","GET"],
-    credentials: true
-  }
-));
+app.use(cors());
 
 // Connect to MongoDB 
 mongoose.connect('mongodb+srv://ansari:ansari@cluster0.s50xwut.mongodb.net/todo-mern?retryWrites=true&w=majority', {
