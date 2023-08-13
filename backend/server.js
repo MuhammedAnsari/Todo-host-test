@@ -28,6 +28,17 @@ mongoose.connect('mongodb+srv://ansari:ansari@cluster0.s50xwut.mongodb.net/todo-
   console.error('Error connecting to MongoDB:', error);
 });
 
+const abcd = http.createServer((req, res) => {
+  // Set the response headers
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+
+  // Write the response content
+  res.write('<h1>Hello, World!</h1>');
+
+  // End the response
+  res.end();
+});
+
 
 // API endpoint to get all To-Do tasks
 app.get('/api/todos', async (req, res) => {
