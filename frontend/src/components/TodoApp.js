@@ -15,7 +15,7 @@ const TodoApp = () => {
 
   const fetchTodos = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/todos');
+      const response = await axios.get('https://todo-host-test-api.vercel.app/api/todos');
       setTodos(response.data);
     } catch (error) {
       console.error('Error fetching todos:', error);
@@ -25,7 +25,7 @@ const TodoApp = () => {
   const handleAddTodo = async () => {
     if (inputValue.trim() !== '') {
       try {
-        const response = await axios.post('http://localhost:5000/api/todos', { task: inputValue });
+        const response = await axios.post('https://todo-host-test-api.vercel.app/api/todos', { task: inputValue });
         setTodos([...todos, response.data]);
         setInputValue('');
       } catch (error) {
@@ -50,7 +50,7 @@ const TodoApp = () => {
     const updatedTodos = todos.filter((_, i) => i !== index);
     setTodos(updatedTodos);
     try {
-      await axios.delete(`http://localhost:5000/api/todos/${todos[index]._id}`);
+      await axios.delete(`https://todo-host-test-api.vercel.app/api/todos/${todos[index]._id}`);
     } catch (error) {
       console.error('Error deleting todo:', error);
     }
