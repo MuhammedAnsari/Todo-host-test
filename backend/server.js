@@ -28,64 +28,57 @@ mongoose.connect('mongodb+srv://ansari:ansari@cluster0.s50xwut.mongodb.net/todo-
   console.error('Error connecting to MongoDB:', error);
 });
 
-const abcd = http.createServer((req, res) => {
-  // Set the response headers
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-
-  // Write the response content
-  res.write('<h1>Hello, World!</h1>');
-
-  // End the response
-  res.end();
-});
-
-
 // API endpoint to get all To-Do tasks
 app.get('/api/todos', async (req, res) => {
-    try {
-      const todos = await Todo.find();
-      res.json(todos);
-    } catch (error) {
-      res.status(500).json({ error: 'Server error' });
-    }
-  });
-  
-  // API endpoint to create a new To-Do task
-  app.post('/api/todos', async (req, res) => {
-    const { task } = req.body;
-    try {
-      const newTodo = new Todo({ task });
-      await newTodo.save();
-      res.json(newTodo);
-    } catch (error) {
-      res.status(400).json({ error: 'Bad request' });
-    }
-  });
-  
-  // API endpoint to update a To-Do task
-  app.put('/api/todos/:id', async (req, res) => {
-    const { id } = req.params;
-    const { task } = req.body;
-    try {
-      const updatedTodo = await Todo.findByIdAndUpdate(id, { task }, { new: true });
-      res.json(updatedTodo);
-    } catch (error) {
-      res.status(400).json({ error: 'Bad request' });
-    }
-  });
-  
-  // API endpoint to delete a To-Do task
-  app.delete('/api/todos/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-      await Todo.findByIdAndDelete(id);
-      res.json({ message: 'Task deleted' });
-    } catch (error) {
-      res.status(400).json({ error: 'Bad request' });
-    }
-  });
+  try {
+    const todos = await Todo.find();
+    res.json(todos);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
-// Start the server
+// API endpoint to create a new To-Do task
+app.post('/api/todos', async (req, res) => {
+  const { task } = req.body;
+  try {
+    const newTodo = new Todo({ task });
+    await newTodo.save();
+    res.json(newTodo);
+  } catch (error) {
+    res.status(400).json({ error: 'Bad request' });
+  }
+});
+
+// API endpoint to update a To-Do task
+app.put('/api/todos/:id', async (req, res) => {
+  const { id } = req.params;
+  const { task } = req.body;
+  try {
+    const updatedTodo = await Todo.findByIdAndUpdate(id, { task }, { new: true });
+    res.json(updatedTodo);
+  } catch (error) {
+    res.status(400).json({ error: 'Bad request' });
+  }
+});
+
+// API endpoint to delete a To-Do task
+app.delete('/api/todos/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Todo.findByIdAndDelete(id);
+    res.json({ message: 'Task deleted' });
+  } catch (error) {
+    res.status(400).json({ error: 'Bad request' });
+  }
+});
+
+// Serve the "Hello, World!" HTML response
+app.get('/', (req, res) => {
+  res.send('<h1>Hello, World!</h1>');
+});
+
+// Start the Express app
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
