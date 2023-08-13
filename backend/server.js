@@ -5,10 +5,14 @@ const Todo = require('./models/Todo');
 
 const app = express();
 
+const corsOptions = {
+  origin: 'https://main.d2ljjsnhz8so43.amplifyapp.com/', 
+};
+
 app.use(express.json());
 
 // Enable CORS (with default settings)
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Connect to MongoDB 
 mongoose.connect('mongodb+srv://ansari:ansari@cluster0.s50xwut.mongodb.net/todo-mern?retryWrites=true&w=majority', {
