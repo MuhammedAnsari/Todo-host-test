@@ -9,7 +9,7 @@ app.use(express.json());
 
 // Enable CORS
 app.use(cors({
-  origin: "*",
+  origin: {"https://todo-host-test-frontend.vercel.app"},
   methods: ["POST", "GET"],
   credentials: true
 }));
