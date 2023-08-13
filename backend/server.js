@@ -74,7 +74,7 @@ app.delete('/api/todos/:id', async (req, res) => {
 
 // Serve the "Hello, World!" HTML response
 app.get('/', (req, res) => {
-  res.send('<h1>Hello, World!</h1>');
+  res.json('hello');
 });
 
 // Start the Express app
