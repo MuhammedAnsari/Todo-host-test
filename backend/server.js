@@ -10,7 +10,7 @@ app.use(express.json());
 // Enable CORS
 app.use(cors(
   {
-    origin: {""},
+    origin: {"https://deploy-mern-lunhg.vercel.app"},
     methods: ["POST","GET"],
     credentials: true
   }
