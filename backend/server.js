@@ -7,13 +7,8 @@ const app = express();
 
 app.use(express.json());
 
-// Enable CORS
-app.use(cors({
-  origin: {"https://todo-host-test-frontend.vercel.app"},
-  methods: ["POST", "GET"],
-  credentials: true
-}));
-
+// Enable CORS (with default settings)
+app.use(cors());
 
 // Connect to MongoDB 
 mongoose.connect('mongodb+srv://ansari:ansari@cluster0.s50xwut.mongodb.net/todo-mern?retryWrites=true&w=majority', {
