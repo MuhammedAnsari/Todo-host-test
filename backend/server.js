@@ -8,7 +8,13 @@ const app = express();
 app.use(express.json());
 
 // Enable CORS
-app.use(cors());
+app.use(cors(
+  {
+    origin: {""},
+    methods: ["POST","GET"],
+    credentials: true
+  }
+));
 
 // Connect to MongoDB 
 mongoose.connect('mongodb+srv://ansari:ansari@cluster0.s50xwut.mongodb.net/todo-mern?retryWrites=true&w=majority', {
